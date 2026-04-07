@@ -54,19 +54,19 @@ Output files will be placed in data/ (e.g., telco_customers.csv, support_convers
 
 Use make for streamlined workflows:
 
-make help: List all commands.
-make install: Install base dependencies.
-make install-dev: Install development tools (e.g., Ruff, Black, Jupyter).
-make generate-ext: Generate extended dataset.
-make explore: Launch Jupyter.
-make lint: Check code style.
-make format: Fix code style.
-make clean-data: Clean generated data.
-make train: Train the churn model (logs to MLflow).
-make docker-up: Start all services via Docker Compose.
-make jupyter-up: Launch Jupyter container.
-make jupyter-down: Stop Jupyter.
-make jupyter-logs: View Jupyter logs (includes access token).
+- make help: List all commands.
+- make install: Install base dependencies.
+- make install-dev: Install development tools (e.g., Ruff, Black, Jupyter).
+- make generate-ext: Generate extended dataset.
+- make explore: Launch Jupyter.
+- make lint: Check code style.
+- make format: Fix code style.
+- make clean-data: Clean generated data.
+- make train: Train the churn model (logs to MLflow).
+- make docker-up: Start all services via Docker Compose.
+- make jupyter-up: Launch Jupyter container.
+- make jupyter-down: Stop Jupyter.
+- make jupyter-logs: View Jupyter logs (includes access token).
 
 ## ML Training
 Запустіть `make train` для тренування моделі churn prediction.
@@ -114,8 +114,11 @@ python test_api_predict.py
 ```
 
 The test script will:
+
 1. Check `/health` endpoint (confirms API is running and model is loaded)
+   
 2. Send sample customer data to `/predict`
+   
 3. Display the churn prediction result (probability and binary classification)
 
 ### Via Docker Compose:
@@ -126,15 +129,18 @@ docker-compose up --build
 
 # In another terminal, test the API
 curl http://localhost:8000/health
-
-
 ```
 
 ## Deployment
+
 Use deployment/ for Kubernetes manifests to deploy the API and MLflow in production.
+
 ## Monitoring
+
 Scripts in monitoring/ handle data/concept drift detection, A/B testing, and shadow datasets. Integrate with MLflow for comparing model versions.
+
 ## License
+
 MIT License. See LICENSE for details.
 dvc.yaml: DVC pipeline definitions.
 Makefile: Convenience commands for setup, generation, training, and more.
