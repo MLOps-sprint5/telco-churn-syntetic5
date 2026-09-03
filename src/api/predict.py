@@ -59,6 +59,13 @@ def preprocess_features(features: Dict) -> pd.DataFrame:
     """
     df = pd.DataFrame([features])
 
+    # Додаємо дефолтну дату, якщо модель вимагає 'RecordDate', 
+    # але її немає у вхідній схемі запиту від користувача.
+    if 'RecordDate' not in df.columns:
+        df['RecordDate'] = pd.Timestamp.today().strftime('%Y-%m-%d')
+        # Або, якщо модель очікує специфічний формат/значення, наприклад:
+        # df['RecordDate'] = "2026-09-03"
+
     # Ensure numeric columns are numeric (common potential issue)
     if 'TotalCharges' in df.columns:
         df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
@@ -75,6 +82,7 @@ def preprocess_features(features: Dict) -> pd.DataFrame:
     })
 
     return df
+
 
 
 def predict_churn(features: Dict) -> Dict:
